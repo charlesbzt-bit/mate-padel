@@ -5,7 +5,7 @@ Mate est une application web permettant de **proposer une intention de match** (
 L’objectif est de **simplifier l’organisation d’un match**, avant même la réservation d’un terrain.
 
 ## Démo
-👉 https://mate-padel-zjp2-avbmjobdq-charlesbzts-projects.vercel.app/
+👉 [https://mate-padel-zjp2-avbmjobdq-charlesbzts-projects.vercel.app/](https://mate-padel.vercel.app/)
 
 ## Pourquoi Mate ?
 Organiser un match est souvent plus compliqué que jouer :
