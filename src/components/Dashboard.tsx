@@ -9,6 +9,7 @@ export default function Dashboard({
   labelLevel,
   labelSlot,
 }: any) {
+const list = Array.isArray(intentions) ? intentions : [];
   return (
     <div className="container">
       {/* HEADER */}
@@ -80,7 +81,7 @@ export default function Dashboard({
 
         <hr className="hr" />
 
-        {intentions.map((m: any) => {
+        {list.map((m: any) => {
           const c = m.count || 0;
           const isFull = c >= 4;
 
