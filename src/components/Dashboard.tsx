@@ -166,7 +166,7 @@ export default function Dashboard({ user, onLogout }: Props) {
   }
 
   return (
-    <div style={{ padding: 40, maxWidth: 980, margin: "0 auto" }}>
+    <div className="container">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
         <div>
           <h1 style={{ margin: 0 }}>Mate</h1>
@@ -180,7 +180,7 @@ export default function Dashboard({ user, onLogout }: Props) {
 
       <hr style={{ margin: "16px 0" }} />
 
-      <div style={{ border: "1px solid #ddd", borderRadius: 12, padding: 16 }}>
+      <div className="card cardPad">
         <strong>Créer une intention</strong>
 
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 12 }}>
@@ -223,7 +223,7 @@ export default function Dashboard({ user, onLogout }: Props) {
 
       <div style={{ height: 16 }} />
 
-      <div style={{ border: "1px solid #ddd", borderRadius: 12, padding: 16 }}>
+      <div className="card cardPad">
         <strong>Intentions à venir</strong>
         <p style={{ opacity: 0.8, marginTop: 6 }}>Objectif : compléter à 4 joueurs, puis choisir un club et réserver.</p>
 
@@ -241,7 +241,7 @@ export default function Dashboard({ user, onLogout }: Props) {
               const isJoined = !!joined[m.id];
 
               return (
-                <div key={m.id} style={{ border: "1px solid #ddd", borderRadius: 12, padding: 14 }}>
+                <div key={m.id} className="card pad">
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
                     <span style={{ padding: "4px 10px", borderRadius: 999, border: "1px solid #ddd" }}>{m.zone}</span>
                     <span style={{ padding: "4px 10px", borderRadius: 999, border: "1px solid #ddd" }}>{labelLevel(m.level)}</span>
@@ -254,6 +254,9 @@ export default function Dashboard({ user, onLogout }: Props) {
                     <div style={{ opacity: 0.85 }}>
                       Joueurs : <b>{Math.min(c, 4)}/4</b> {isFull ? "✅" : ""}
                     </div>
+                    <div className="progress" style={{ marginTop: 10 }}>
+  <div style={{ width: `${Math.min(100, (c / 4) * 100)}%` }} />
+</div>
                   </div>
 
                   <hr style={{ margin: "12px 0" }} />
