@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FormEvent } from "react";
+import type React from "react";
 import { supabase } from "../lib/supabase";
 
 export default function Auth() {
@@ -9,7 +9,7 @@ export default function Auth() {
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setMsg(null);
     setBusy(true);
