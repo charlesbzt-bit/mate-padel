@@ -4,6 +4,10 @@ import { supabase } from "./lib/supabase";
 import Auth from "./components/Auth";
 import Dashboard from "./components/Dashboard";
 
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Landing from "./pages/Landing";
+import About from "./pages/About";
+
 type Intention = {
   id: string;
   date: string;
@@ -83,23 +87,39 @@ export default function App() {
   }
 
   if (loading) return null;
-  if (!user) return <Auth />;
 
   return (
-    <Dashboard
-      user={user}
-      onLogout={onLogout}
-      createIntention={createIntention}
-      refresh={refresh}
-      date={date}
-      setDate={setDate}
-      timeSlot={timeSlot}
-      setTimeSlot={setTimeSlot}
-      zone={zone}
-      setZone={setZone}
-      level={level}
-      setLevel={setLevel}
-      intentions={intentions}
-    />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={!user ? <Auth /> : <Navigate to="/app" />} />
+        <Route
+          path="/app"
+          element={
+            user ? (
+              <Dashboard
+                user={user}
+                onLogout={onLogout}
+                createIntention={createIntention}
+                refresh={refresh}
+                date={date}
+                setDate={setDate}
+                timeSlot={timeSlot}
+                setTimeSlot={setTimeSlot}
+                zone={zone}
+                setZone={setZone}
+                level={level}
+                setLevel={setLevel}
+                intentions={intentions}
+              />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

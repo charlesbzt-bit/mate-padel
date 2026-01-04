@@ -30,48 +30,63 @@ export default function Auth() {
     }
   }
 
-  return (
-    <div style={{ padding: 40, maxWidth: 520 }}>
-      <h1>Mate</h1>
-      <p>Padel à Paris — trouve 3 joueurs avant de réserver.</p>
+    return (
+    <div className="container">
+      <div className="row space">
+        <div>
+          <div className="pill">🏸 Mate</div>
+          <h1 className="h1" style={{ marginTop: 10 }}>Trouve 3 joueurs avant de réserver</h1>
+          <div className="sub">Padel à Paris — rapide, simple, sans spam.</div>
+        </div>
+      </div>
 
-      <div style={{ marginTop: 16, padding: 16, border: "1px solid #ddd", borderRadius: 12 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ height: 16 }} />
+
+      <div className="card cardPad" style={{ maxWidth: 520, margin: "0 auto" }}>
+        <div className="row space">
           <strong>{mode === "signup" ? "Créer un compte" : "Se connecter"}</strong>
           <button onClick={() => setMode(mode === "signup" ? "login" : "signup")}>
             {mode === "signup" ? "J’ai déjà un compte" : "Créer un compte"}
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ marginTop: 12, display: "grid", gap: 10 }}>
-          <label>
-            Email
+        <hr className="hr" />
+
+        <form onSubmit={handleSubmit} className="grid">
+          <div className="col-12">
+            <label className="small muted">Email</label>
             <input
-              style={{ width: "100%", padding: 10, marginTop: 6 }}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              placeholder="toi@email.com"
             />
-          </label>
+          </div>
 
-          <label>
-            Mot de passe
+          <div className="col-12">
+            <label className="small muted">Mot de passe</label>
             <input
-              style={{ width: "100%", padding: 10, marginTop: 6 }}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              placeholder="••••••••"
             />
-          </label>
+          </div>
 
-          <button disabled={busy} type="submit" style={{ padding: 10 }}>
-            {busy ? "…" : mode === "signup" ? "Créer" : "Connexion"}
-          </button>
+          <div className="col-12 row" style={{ justifyContent: "flex-end" }}>
+            <button className="primary" disabled={busy} type="submit">
+              {busy ? "…" : mode === "signup" ? "Créer" : "Connexion"}
+            </button>
+          </div>
         </form>
 
-        {msg && <p style={{ marginTop: 10 }}>{msg}</p>}
+        {msg && (
+          <div style={{ marginTop: 10 }} className="muted small">
+            {msg}
+          </div>
+        )}
       </div>
     </div>
   );

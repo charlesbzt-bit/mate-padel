@@ -1,12 +1,8 @@
 :root{
   --bg:#0b1220;
-  --card:#101a2f;
-  --muted:#97a3b6;
   --text:#e8edf7;
-  --line:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.10);
   --accent:#7c5cff;
-  --success:#20c997;
-  --danger:#ff5c7a;
 }
 
 *{box-sizing:border-box}
@@ -90,9 +86,7 @@ input,select{
 .badge.warn{border-color:rgba(255,200,0,.4);background:rgba(255,200,0,.12)}
 .badge.full{border-color:rgba(124,92,255,.6);background:rgba(124,92,255,.18)}
 
-.sectionTitle{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-}
+.sectionTitle{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .sectionTitle h2{margin:0;font-size:16px}
 
 .progress{
