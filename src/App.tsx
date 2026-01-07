@@ -3,6 +3,8 @@ import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "./lib/supabase";
 import Auth from "./components/Auth";
 import Dashboard from "./components/Dashboard";
+import Search from "./pages/Search";
+import Profile from "./pages/Profile";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./pages/Landing";
@@ -89,37 +91,45 @@ export default function App() {
   if (loading) return null;
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={!user ? <Auth /> : <Navigate to="/app" />} />
-        <Route
-          path="/app"
-          element={
-            user ? (
-              <Dashboard
-                user={user}
-                onLogout={onLogout}
-                createIntention={createIntention}
-                refresh={refresh}
-                date={date}
-                setDate={setDate}
-                timeSlot={timeSlot}
-                setTimeSlot={setTimeSlot}
-                zone={zone}
-                setZone={setZone}
-                level={level}
-                setLevel={setLevel}
-                intentions={intentions}
-              />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/login" element={!user ? <Auth /> : <Navigate to="/app" />} />
+
+      <Route
+        path="/search"
+        element={
+          user ? (
+            <Search
+              user={user}
+              intentions={intentions}
+              onLogout={onLogout}
+              createIntention={createIntention}
+              refresh={refresh}
+              date={date}
+              setDate={setDate}
+              timeSlot={timeSlot}
+              setTimeSlot={setTimeSlot}
+              zone={zone}
+              setZone={setZone}
+              level={level}
+              setLevel={setLevel}
+            />
+          ) : (
+            <Navigate to="/" />
+          )
+        }
+      />
+
+      <Route
+        path="/profile"
+        element={user ? <Profile user={user} /> : <Navigate to="/" />}
+      />
+
+      <Route path="/app" element={<Navigate to="/search" />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  </BrowserRouter>
+);
 }
