@@ -1,4 +1,5 @@
 import type { User } from "@supabase/supabase-js";
+import { Link } from "react-router-dom";
 
 type Intention = {
   id: string;
@@ -12,12 +13,10 @@ type Props = {
   user: User;
   intentions: Intention[];
 
-  // actions
   onLogout: () => void;
   createIntention: () => Promise<void> | void;
   refresh: () => Promise<void> | void;
 
-  // form state
   date: string;
   setDate: (v: string) => void;
   timeSlot: string;
@@ -64,7 +63,7 @@ export default function Dashboard({
       {/* HEADER */}
       <div className="header">
         <div className="brand">
-          <div className="logo">🏸</div>
+          <div className="logo">🏓</div>
           <div>
             <h1 className="h1">Mate</h1>
             <div className="sub">Crée une intention de match et propose un créneau</div>
@@ -78,6 +77,14 @@ export default function Dashboard({
       </div>
 
       <hr className="hr" />
+      <div className="card pad" style={{ marginBottom: 16 }}>
+  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+    <Link className="btn" to="/search">🔎 Rechercher</Link>
+    <Link className="btn" to="/map">🗺️ Map</Link>
+    <Link className="btn" to="/profile">👤 Profil</Link>
+  </div>
+</div>
+
 
       {/* CREATE */}
       <div className="card pad">
@@ -127,8 +134,8 @@ export default function Dashboard({
       {/* LIST */}
       <div className="card pad">
         <div className="sectionTitle">
-          <h2>📅 Intentions publiées</h2>
-          <span className="badge">📌 Liste</span>
+          <h2>📌 Intentions publiées</h2>
+          <span className="badge">📋 Liste</span>
         </div>
 
         <div className="muted small" style={{ marginTop: 8 }}>
